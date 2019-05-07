@@ -44,4 +44,12 @@ public class RabbitMqController {
     }
 
 
+    @PostMapping("/creatFanoutExchange")
+    @ApiOperation("创建Fanout类型的交换机")
+    public RespEntityUtil<Boolean> creatFanoutExchange(@RequestParam("exchange") String exchange, @RequestParam("key") String key, @RequestParam("queue") String queue) {
+        Boolean aBoolean = RabbitMqUtil.creatFanoutExchange(exchange, key, queue);
+        return RespEntityUtil.ok(aBoolean);
+    }
+
+
 }

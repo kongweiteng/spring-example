@@ -8,6 +8,8 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+
 @Component
 public class RabbitMqUtil {
     private static RabbitMessagingTemplate rabbitMessagingTemplate;
@@ -88,9 +90,47 @@ public class RabbitMqUtil {
      * @return
      */
     public static Boolean creatTopicExchange(String exchange) {
-        TopicExchange topicExchange = new TopicExchange(exchange);
+        TopicExchange topicExchange = new TopicExchange(exchange, true, false);
         amqpAdmin.declareExchange(topicExchange);
         return true;
 
     }
+
+    /**
+     * 创建 Fanout 类型的 交换机
+     *
+     * @param exchange
+     * @return
+     */
+    public static Boolean creatFanoutExchange(String exchange) {
+        //创建交换机
+        FanoutExchange topicExchange = new FanoutExchange(exchange, true, false);
+        amqpAdmin.declareExchange(topicExchange);
+        return true;
+    }
+
+    public static Boolean bind(String exchange, String queue, String key) {
+        Binding binding = new Binding(queue, Binding.DestinationType.QUEUE,
+                exchange, key, new HashMap());
+        amqpAdmin.declareBinding(binding);
+        return true;
+    }
+
+
+    /**
+     * 创建 Fanout 类型的 交换机 并且绑定 队列
+     *
+     * @param exchange
+     * @return
+     */
+    public static Boolean creatFanoutExchange(String exchange, String key, String queue) {
+        //创建交换机
+        Boolean aBoolean = creatFanoutExchange(exchange);
+        //创建队列
+        String s = creatQueue(queue);
+        //bind
+        Boolean bind = bind(exchange, queue, key);
+        return true;
+    }
+
 }
