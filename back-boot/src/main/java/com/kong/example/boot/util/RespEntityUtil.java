@@ -23,9 +23,24 @@ public class RespEntityUtil<T> implements Serializable {
     @ApiModelProperty(value = "接口返回错误信息", name = "error", example = "参数错误！！！")
     private String error;
 
+    /**
+     * ok
+     *
+     * @param obj
+     * @param <T>
+     * @return
+     */
     public static <T> RespEntityUtil<T> ok(T obj) {
         RespEntityUtil respEntity = new RespEntityUtil();
         respEntity.setCode(StatusCodeUtil.SUCCESS.getCode());
+        respEntity.setMsg(StatusCodeUtil.SUCCESS.getMsg());
+        respEntity.setData(obj);
+        return respEntity;
+    }
+
+    public static <T> RespEntityUtil<T> ok(Integer code, T obj) {
+        RespEntityUtil respEntity = new RespEntityUtil();
+        respEntity.setCode(code);
         respEntity.setMsg(StatusCodeUtil.SUCCESS.getMsg());
         respEntity.setData(obj);
         return respEntity;
