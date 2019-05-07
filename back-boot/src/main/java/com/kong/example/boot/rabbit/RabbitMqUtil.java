@@ -76,7 +76,7 @@ public class RabbitMqUtil {
      * @return
      */
     public static String creatQueue(String queue) {
-        return amqpAdmin.declareQueue(new Queue(queue));
+        return amqpAdmin.declareQueue(new Queue(queue, true));
 
     }
 
