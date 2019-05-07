@@ -3,6 +3,7 @@ package com.kong.example.boot.rest;
 
 import com.kong.example.boot.util.CookieUtils;
 import com.kong.example.boot.util.RespEntityUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
+@Api(tags = {"用户认证"})
 public class LoginController {
     @Autowired
     HttpSession httpSession;

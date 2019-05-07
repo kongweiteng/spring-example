@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/ldap")
-@Api(tags = {"LDAP使用"})
+@Api(tags = {"ldap使用"})
 public class LdapController {
     @Autowired
     LdapTemplate ldapTemplate;
