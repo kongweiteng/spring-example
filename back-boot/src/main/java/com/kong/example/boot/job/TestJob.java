@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 @Slf4j
 public class TestJob {
 
-    @Scheduled(cron = "0/5 * *  * * ? ")   //每1秒执行一次
+    @Scheduled(cron = "0/5 * *  * * ? ")   //每*秒执行一次
     @Async
     public void test() {
         LocalDateTime now = LocalDateTime.now();
