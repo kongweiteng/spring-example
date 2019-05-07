@@ -1,0 +1,16 @@
+server:
+  port: 6666
+spring:
+  application:
+    name: back-boot
+  #配置mvc.static-path-pattern 实现对resource/static 下静态资源访问
+  mvc:
+    static-path-pattern: /**
+  redis:
+    host: 10.4.82.184
+    port: 31946
+    database: 3
+  session:
+    redis:
+      namespace: data:session
+    store-type: redis
