@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class MqReceiver {
     //1. 手动创建，需在RabbitMQ中手动创建myQueue1 队列，否则报错
-    @RabbitListener(queues = "queue.out")
+    @RabbitListener(queues = "queue.out1")
     public void process1(String message) {
         log.info("queue.out: {}", message);
     }
