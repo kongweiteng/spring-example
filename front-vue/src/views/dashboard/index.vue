@@ -41,7 +41,7 @@
     methods: {
       onConnected(frame) {
         // console.log("Connected: " + frame);
-        var queue = "/queue/time";
+        var queue = "/exchange/time-exchange";
         // var queue = "/exchange/exchange.out/nihaoa";
         this.client.subscribe(queue, this.responseCallback, this.onFailed);
         // console.log(frame)
