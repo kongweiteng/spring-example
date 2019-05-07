@@ -24,7 +24,7 @@ public class RabbitMqController {
     @PostMapping("/sendQueue")
     @ApiOperation("生产者生产消息到队列")
     public RespEntityUtil<Boolean> sendJsonMsgQueue(@RequestParam("queue") String queue, @RequestParam("value") String value) {
-        Boolean aBoolean = RabbitMqUtil.sendJsonMsgQueue(queue, value);
+        Boolean aBoolean = RabbitMqUtil.sendJsonMsgQueue(queue, value+System.currentTimeMillis());
         return RespEntityUtil.ok(aBoolean);
     }
 
