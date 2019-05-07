@@ -42,6 +42,7 @@
       onConnected(frame) {
         console.log("Connected: " + frame);
         var queue = "/queue/time";
+        // var queue = "/exchange/exchange.out/nihaoa";
         this.client.subscribe(queue, this.responseCallback, this.onFailed);
         console.log(frame)
       },
@@ -83,20 +84,22 @@
   }
 </style>
 <style type="text/css">
-  #tab{
+  #tab {
     width: 500px;
     height: 200px;
     /*background:-webkit-gradient(linear,center top,center bottom,from(blue), to(white));*/
-    background: -webkit-linear-gradient(top,#007fff,#84bff9);/*css3设置渐变*/
+    background: -webkit-linear-gradient(top, #007fff, #84bff9); /*css3设置渐变*/
     margin-bottom: 100px;
   }
-  #aTime{
+
+  #aTime {
     color: #fff;
     /*text-align: center;*/
     /*line-height: 200px;*/
     float: left;
   }
-  #Tradion{
+
+  #Tradion {
     width: 100px;
     height: 100px;
     border: 2px solid #fff;
@@ -104,41 +107,47 @@
     float: left;
     margin: 50px 50px;
   }
-  #hours{
+
+  #hours {
     width: 30px;
     height: 2px;
-    margin:50px 50px;
+    margin: 50px 50px;
     background: #fff;
     transform-origin: left bottom;
   }
-  #minutes{
+
+  #minutes {
     width: 38px;
     height: 2px;
     background: #fff;
-    margin:-50px 50px;
+    margin: -50px 50px;
     transform-origin: left bottom;
-    transform:rotate(0deg);
+    transform: rotate(0deg);
   }
-  #seconds{
+
+  #seconds {
     width: 45px;
     height: 1px;
     background: #fff;
-    margin:50px 50px;
+    margin: 50px 50px;
     transform-origin: left bottom;
-    transform:rotate(0deg);
+    transform: rotate(0deg);
 
   }
-  .tran{
-    transform: rotate(-90deg);/*这里测试了一下旋转角*/
+
+  .tran {
+    transform: rotate(-90deg); /*这里测试了一下旋转角*/
   }
-  #dian{
-    width:6px;
+
+  #dian {
+    width: 6px;
     height: 6px;
     border-radius: 6px;
     background: #fff;
-    margin:-55px 46px;
+    margin: -55px 46px;
   }
-  #aDate,#week{
+
+  #aDate, #week {
     color: #fff;
     padding-top: 50px;
   }
