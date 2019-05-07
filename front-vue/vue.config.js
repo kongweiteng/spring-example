@@ -34,6 +34,7 @@ module.exports = {
       // change xxx-api/login => mock/login
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
+        ws: false,
         target: `http://localhost:6666/`,
         changeOrigin: true,
         pathRewrite: {
