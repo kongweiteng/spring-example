@@ -17,4 +17,8 @@ spring:
   ldap:
     urls: ldap://tds02.baidu.com:389
     base: DC=BAIDU,DC=COM
-
+  rabbitmq:
+    host: 10.4.82.184
+    port: 31994
+    username: guest
+    password: guest
