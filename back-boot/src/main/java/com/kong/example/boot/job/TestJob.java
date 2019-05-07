@@ -8,6 +8,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 @Component
 @EnableScheduling
@@ -17,7 +21,10 @@ public class TestJob {
     @Scheduled(cron = "0/1 * *  * * ? ")   //每1秒执行一次
     @Async
     public void test() {
-        Boolean time = RabbitMqUtil.sendJsonMsgQueue("time", JSON.toJSONString(System.currentTimeMillis()));
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH:mm:ss");
+        String nowStr = now.format(format);
+        Boolean time = RabbitMqUtil.sendJsonMsgQueue("time", nowStr);
     }
 
 }

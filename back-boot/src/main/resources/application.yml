@@ -19,6 +19,6 @@ spring:
     base: DC=BAIDU,DC=COM
   rabbitmq:
     host: 10.4.82.184
-    port: 31994
+    port: 30217
     username: guest
     password: guest

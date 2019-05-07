@@ -16,6 +16,14 @@ spring boot开发脚手架，后端采用spring boot 2.x，前端采用vue
 ## ldap
 ```text
 实现ldap协议的登录方式
+```
+
+## rabbitmq
+```text
+实现rabbitmq交换机、队列的创建、绑定
+实现对交换机、队列生成数据
+实现消费数据
+安装插件 （安装命令：rabbitmq-plugins enable rabbitmq_web_stomp ）实现web 页面通过socket消费消息
 
 
 ```
