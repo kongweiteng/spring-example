@@ -11,9 +11,9 @@
         <div id="dian"></div>
 
       </div>
-      <h1 id="aTime">13:58</h1>
-      <h3 id="aDate"></h3>
-      <h2 id="week"></h2>
+      <h1 id="aTime">13:58:56</h1>
+      <h3 id="aDate">2019年5月7日</h3>
+      <h2 id="week">星期二</h2>
     </div>
 
   </div>
