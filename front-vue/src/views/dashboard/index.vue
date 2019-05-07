@@ -40,17 +40,17 @@
     },
     methods: {
       onConnected(frame) {
-        console.log("Connected: " + frame);
+        // console.log("Connected: " + frame);
         var queue = "/queue/time";
         // var queue = "/exchange/exchange.out/nihaoa";
         this.client.subscribe(queue, this.responseCallback, this.onFailed);
-        console.log(frame)
+        // console.log(frame)
       },
       onFailed(frame) {
-        console.log("Failed: " + frame);
+        // console.log("Failed: " + frame);
       },
       responseCallback(frame) {
-        console.log("得到的消息 msg=>" + frame.body);
+        // console.log("得到的消息 msg=>" + frame.body);
         this.time = frame.body
         // console.log(frame)
         //接收到服务器推送消息，向服务器发送确认消息
