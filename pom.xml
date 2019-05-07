@@ -66,6 +66,13 @@
                 <version>${fastjson.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.nutz</groupId>
+                <artifactId>nutz</artifactId>
+                <version>1.r.66</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
     <build>

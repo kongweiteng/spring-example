@@ -14,3 +14,7 @@ spring:
     redis:
       namespace: data:session
     store-type: redis
+  ldap:
+    urls: ldap://tds02.baidu.com:389
+    base: DC=BAIDU,DC=COM
+
