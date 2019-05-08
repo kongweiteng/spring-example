@@ -1,6 +1,5 @@
 package com.kong.example.boot.rest.test;
 
-import com.alibaba.fastjson.JSON;
 import com.kong.example.boot.entity.IndexReqEntity;
 import com.kong.example.boot.util.ElasticUtil;
 import com.kong.example.boot.util.RespEntityUtil;
@@ -30,5 +29,15 @@ public class ElasticController {
         ).source(indexReqEntity.getData());
         IndexResponse index = ElasticUtil.index(indexRequest, RequestOptions.DEFAULT);
         return RespEntityUtil.ok(index);
+    }
+
+
+    @PostMapping("/indexAsync")
+    @ApiOperation("异步新增修改")
+    public RespEntityUtil indexAsync(@RequestBody IndexReqEntity indexReqEntity) {
+        IndexRequest indexRequest = new IndexRequest(indexReqEntity.getIndex(), "doc", indexReqEntity.getId()
+        ).source(indexReqEntity.getData());
+        ElasticUtil.indexAsync(indexRequest, RequestOptions.DEFAULT);
+        return RespEntityUtil.ok(null);
     }
 }
