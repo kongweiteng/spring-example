@@ -74,7 +74,11 @@
                 <artifactId>nutz</artifactId>
                 <version>1.r.66</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>6.5.4</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>

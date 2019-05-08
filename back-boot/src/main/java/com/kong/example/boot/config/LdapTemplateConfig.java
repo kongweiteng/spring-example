@@ -14,7 +14,7 @@ public class LdapTemplateConfig {
     private String base;
 
     @Bean
-    public LdapTemplate init() {
+    public LdapTemplate ldapTemplate() {
         LdapContextSource ldapContext = new LdapContextSource();
         ldapContext.setUrl(url);
         ldapContext.setBase(base);
