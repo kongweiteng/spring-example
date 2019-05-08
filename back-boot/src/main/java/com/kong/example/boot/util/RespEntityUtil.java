@@ -45,4 +45,13 @@ public class RespEntityUtil<T> implements Serializable {
         respEntity.setData(obj);
         return respEntity;
     }
+
+    public static <T> RespEntityUtil<T> fail(Integer code, String msg, String error) {
+        RespEntityUtil respEntity = new RespEntityUtil();
+        respEntity.setCode(code);
+        respEntity.setMsg(msg);
+        respEntity.setData(null);
+        respEntity.setError(error);
+        return respEntity;
+    }
 }
