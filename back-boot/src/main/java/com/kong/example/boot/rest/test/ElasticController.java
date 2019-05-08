@@ -26,7 +26,7 @@ public class ElasticController {
     @PostMapping("/index")
     @ApiOperation("新增修改")
     public RespEntityUtil<IndexResponse> index(@RequestBody IndexReqEntity indexReqEntity) {
-        IndexRequest indexRequest = new IndexRequest(indexReqEntity.getIndex(), indexReqEntity.getType(), indexReqEntity.getId()
+        IndexRequest indexRequest = new IndexRequest(indexReqEntity.getIndex(), "doc", indexReqEntity.getId()
         ).source(indexReqEntity.getData());
         IndexResponse index = ElasticUtil.index(indexRequest, RequestOptions.DEFAULT);
         return RespEntityUtil.ok(index);

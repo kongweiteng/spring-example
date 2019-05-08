@@ -20,9 +20,6 @@ public class ElasticUtil {
         this.restHighLevelClient = restHighLevelClient;
     }
 
-    public ElasticUtil() {
-        log.info("--------------------ElasticUtil------------------init----------------------");
-    }
 
     /**
      * index
