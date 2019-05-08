@@ -27,3 +27,24 @@ spring boot开发脚手架，后端采用spring boot 2.x，前端采用vue
 
 
 ```
+
+
+## elastic search 
+```xml
+<dependency>
+    <groupId>org.elasticsearch.client</groupId>
+    <artifactId>elasticsearch-rest-high-level-client</artifactId>
+    <version>6.5.4</version>
+ </dependency>
+ 
+```
+
+```text
+利用es官方网站推荐的高级java客户端
+
+服务端版本是7.0.1
+
+推荐文档：https://es.quanke.name
+
+```
+
