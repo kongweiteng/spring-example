@@ -50,7 +50,6 @@ public class ElasticUtil {
      * @return
      */
     public static void indexAsync(IndexRequest indexRequest, RequestOptions options) {
-        IndexResponse index = null;
         restHighLevelClient.indexAsync(indexRequest, RequestOptions.DEFAULT, new ActionListener<IndexResponse>() {
             @Override
             public void onResponse(IndexResponse indexResponse) {
@@ -67,6 +66,8 @@ public class ElasticUtil {
             }
         });
     }
+
+
 
 
 }

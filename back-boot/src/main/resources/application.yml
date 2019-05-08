@@ -22,3 +22,6 @@ spring:
     port: 30217
     username: guest
     password: guest
+  elasticsearch:
+    rest:
+      uris: 10.4.82.184:30080

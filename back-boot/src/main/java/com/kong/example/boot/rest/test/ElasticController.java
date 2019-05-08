@@ -1,5 +1,6 @@
 package com.kong.example.boot.rest.test;
 
+import com.kong.example.boot.config.ElasticConfig;
 import com.kong.example.boot.entity.IndexReqEntity;
 import com.kong.example.boot.util.ElasticUtil;
 import com.kong.example.boot.util.RespEntityUtil;
@@ -25,7 +26,7 @@ public class ElasticController {
     @PostMapping("/index")
     @ApiOperation("新增修改")
     public RespEntityUtil<IndexResponse> index(@RequestBody IndexReqEntity indexReqEntity) {
-        IndexRequest indexRequest = new IndexRequest(indexReqEntity.getIndex(), "doc", indexReqEntity.getId()
+        IndexRequest indexRequest = new IndexRequest(indexReqEntity.getIndex(), ElasticConfig.ELASTIC_TYPE, indexReqEntity.getId()
         ).source(indexReqEntity.getData());
         IndexResponse index = ElasticUtil.index(indexRequest, RequestOptions.DEFAULT);
         return RespEntityUtil.ok(index);
@@ -35,7 +36,7 @@ public class ElasticController {
     @PostMapping("/indexAsync")
     @ApiOperation("异步新增修改")
     public RespEntityUtil indexAsync(@RequestBody IndexReqEntity indexReqEntity) {
-        IndexRequest indexRequest = new IndexRequest(indexReqEntity.getIndex(), "doc", indexReqEntity.getId()
+        IndexRequest indexRequest = new IndexRequest(indexReqEntity.getIndex(), ElasticConfig.ELASTIC_TYPE, indexReqEntity.getId()
         ).source(indexReqEntity.getData());
         ElasticUtil.indexAsync(indexRequest, RequestOptions.DEFAULT);
         return RespEntityUtil.ok(null);
