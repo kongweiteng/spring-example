@@ -6,15 +6,14 @@ import com.kong.example.boot.util.ElasticUtil;
 import com.kong.example.boot.util.RespEntityUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/elastic")
@@ -41,4 +40,13 @@ public class ElasticController {
         ElasticUtil.indexAsync(indexRequest, RequestOptions.DEFAULT);
         return RespEntityUtil.ok(null);
     }
+
+    @GetMapping("/get")
+    @ApiOperation("查询")
+    public RespEntityUtil<GetResponse> get(@RequestParam("index") String index, @RequestParam("id") String id) {
+        GetRequest getRequest = new GetRequest(index, ElasticConfig.ELASTIC_TYPE, id);
+        GetResponse documentFields = ElasticUtil.get(getRequest, RequestOptions.DEFAULT);
+        return RespEntityUtil.ok(documentFields);
+    }
+
 }

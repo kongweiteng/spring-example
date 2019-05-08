@@ -3,6 +3,8 @@ package com.kong.example.boot.util;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.ActionListener;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -68,6 +70,21 @@ public class ElasticUtil {
     }
 
 
-
+    /**
+     * get
+     *
+     * @param getRequest
+     * @param requestOptions
+     * @return
+     */
+    public static GetResponse get(GetRequest getRequest, RequestOptions requestOptions) {
+        GetResponse documentFields = null;
+        try {
+            documentFields = restHighLevelClient.get(getRequest, requestOptions);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return documentFields;
+    }
 
 }
