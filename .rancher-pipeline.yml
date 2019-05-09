@@ -11,7 +11,7 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: reg.enncloud.cn/fnw-dev/back-boot
+      tag: reg.enncloud.cn/fnw-dev/back-boot:${DATE}
       pushRemote: true
       registry: reg.enncloud.cn
 timeout: 60
