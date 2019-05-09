@@ -6,7 +6,7 @@ stages:
       shellScript: |-
         mvn clean package -pl back-boot -am -Dmaven.test.skip=true
         ls
-- name: public
+- name: push
   steps:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
