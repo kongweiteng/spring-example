@@ -1,5 +1,6 @@
 FROM openjdk:8-jdk-slim
 # 切换到 /opt目录
+RUN ls
 WORKDIR /opt
 
 RUN ls /docker-java-home
