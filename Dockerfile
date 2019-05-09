@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-slim
+FROM 10.4.82.184:31597/me/openjdk:8
 # 切换到 /opt目录
 
 WORKDIR /opt
