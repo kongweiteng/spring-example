@@ -68,20 +68,20 @@
             <artifactId>elasticsearch-rest-high-level-client</artifactId>
         </dependency>
     </dependencies>
-    <repositories><!-- 代码库 -->
-        <repository>
-            <id>maven-ali</id>
-            <url>http://maven.enncloud.cn/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>fail</checksumPolicy>
-            </snapshots>
-        </repository>
-    </repositories>
+<!--    <repositories>&lt;!&ndash; 代码库 &ndash;&gt;-->
+<!--        <repository>-->
+<!--            <id>maven-ali</id>-->
+<!--            <url>http://maven.enncloud.cn/content/groups/public/</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>true</enabled>-->
+<!--                <updatePolicy>always</updatePolicy>-->
+<!--                <checksumPolicy>fail</checksumPolicy>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
+<!--    </repositories>-->
     <build>
         <plugins>
             <plugin>

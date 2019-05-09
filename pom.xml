@@ -82,20 +82,30 @@
 
         </dependencies>
     </dependencyManagement>
-    <repositories><!-- 代码库 -->
+    <repositories>
         <repository>
-            <id>maven-ali</id>
+            <id>public</id>
+            <name>enn nexus</name>
+            <url>http://maven.enncloud.cn/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>enn nexus</name>
             <url>http://maven.enncloud.cn/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
             <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>fail</checksumPolicy>
+                <enabled>false</enabled>
             </snapshots>
-        </repository>
-    </repositories>
+        </pluginRepository>
+    </pluginRepositories>
     <build>
         <plugins>
             <plugin>
