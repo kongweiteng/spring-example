@@ -3,7 +3,9 @@ stages:
   steps:
   - runScriptConfig:
       image: maven:3.6.0-jdk-8-alpine
-      shellScript: mvn clean package -pl back-boot -am -Dmaven.test.skip=true
+      shellScript: |-
+        mvn clean package -pl back-boot -am -Dmaven.test.skip=true
+        ls
 - name: public
   steps:
   - publishImageConfig:
