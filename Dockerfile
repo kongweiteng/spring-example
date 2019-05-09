@@ -2,7 +2,7 @@ FROM openjdk:8-jdk-slim
 # 切换到 /opt目录
 WORKDIR /opt
 
-RUN pwd
+RUN ls /
 
 # 将编译的jar拷贝的当前目录
 ADD /spring-example/back-boot/target/back-boot-0.0.1-SNAPSHOT.jar .
