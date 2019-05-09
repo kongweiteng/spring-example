@@ -5,7 +5,7 @@ stages:
       image: node:latest
       shellScript: |-
         cd front-vue
-        npm i
+        npm install --registry http://10.4.82.184:30850/repository/npm-group/
         npm run build:stage
 - name: maven
   steps:

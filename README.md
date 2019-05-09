@@ -53,7 +53,7 @@ spring boot开发脚手架，后端采用spring boot 2.x，前端采用vue
 clean package -pl back-boot -am -Dmaven.test.skip=true
 
 # 构建测试环境
-npm install --registry http://nexus.enncloud.cn/repository/npm/ 
+npm install --registry http://10.4.82.184:30850/repository/npm-group/ 
 
 npm run build:stage
 
