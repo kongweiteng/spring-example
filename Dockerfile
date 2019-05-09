@@ -1,4 +1,4 @@
-FROM reg.enncloud.cn/fnw/openjdk:8
+FROM openjdk:8
 # 切换到 /opt目录
 
 WORKDIR /opt
