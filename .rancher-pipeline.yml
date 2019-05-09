@@ -14,5 +14,13 @@ stages:
       tag: reg.enncloud.cn/fnw-dev/back-boot
       pushRemote: true
       registry: reg.enncloud.cn
+- name: npm
+  steps:
+  - runScriptConfig:
+      image: node:latest
+      shellScript: |-
+        cd front-vue
+        npm i
+        npm run build:stage
 timeout: 60
 notification: {}
