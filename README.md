@@ -55,7 +55,7 @@ mvn clean package -pl back-boot -am docker:build -DpushImage
 mvn clean package docker:build -DpushImage --settings /settings.xml
 # 构建测试环境
 npm install --registry http://10.4.82.184:30850/repository/npm-group/ 
-
+--registry https://registry.npm.taobao.org
 npm run build:stage
 
 # 构建生产环境
