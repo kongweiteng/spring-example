@@ -2,11 +2,13 @@ package com.kong.example.boot.job;
 
 import com.kong.example.boot.rabbit.RabbitMqUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -15,6 +17,17 @@ import java.time.format.DateTimeFormatter;
 @EnableScheduling
 @Slf4j
 public class TestJob {
+    @Autowired
+    RabbitMqUtil rabbitMqUtil;
+
+    /**
+     * 创交换机
+     */
+    @PostConstruct
+    public void initExchange() {
+        RabbitMqUtil.creatFanoutExchange("time-exchange");
+
+    }
 
     @Scheduled(cron = "0/1 * *  * * ? ")   //每*秒执行一次
     @Async

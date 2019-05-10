@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class MqReceiver {
     //1. 手动创建，需在RabbitMQ中手动创建myQueue1 队列，否则报错
-    @RabbitListener(queues = "queue.out1")
+//    @RabbitListener(queues = "queue.out1")
     public void process1(String message) {
         log.info("queue.out: {}", message);
     }
@@ -33,9 +33,9 @@ public class MqReceiver {
      * @param message
      */
     @RabbitListener(bindings = @QueueBinding(
-            exchange = @Exchange("myOrder"),
-            key = "computer",
-            value = @Queue("computerOrder")
+            exchange = @Exchange("time-exchange"),
+
+            value = @Queue("queue.out1")
     ))
     public void processComputer(String message) {
         log.info("computer MqReceiver: {}", message);
