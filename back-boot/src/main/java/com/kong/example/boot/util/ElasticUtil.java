@@ -3,6 +3,8 @@ package com.kong.example.boot.util;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.ActionListener;
+import org.elasticsearch.action.delete.DeleteRequest;
+import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
@@ -11,8 +13,6 @@ import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 @Component
 @Slf4j
@@ -33,13 +33,9 @@ public class ElasticUtil {
      * @param options
      * @return
      */
-    public static IndexResponse index(IndexRequest indexRequest, RequestOptions options) {
+    public static IndexResponse index(IndexRequest indexRequest, RequestOptions options) throws Exception {
         IndexResponse index = null;
-        try {
-            index = restHighLevelClient.index(indexRequest, options);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        index = restHighLevelClient.index(indexRequest, options);
         return index;
     }
 
@@ -51,7 +47,7 @@ public class ElasticUtil {
      * @param options
      * @return
      */
-    public static void indexAsync(IndexRequest indexRequest, RequestOptions options) {
+    public static void indexAsync(IndexRequest indexRequest, RequestOptions options) throws Exception {
         restHighLevelClient.indexAsync(indexRequest, RequestOptions.DEFAULT, new ActionListener<IndexResponse>() {
             @Override
             public void onResponse(IndexResponse indexResponse) {
@@ -77,14 +73,23 @@ public class ElasticUtil {
      * @param requestOptions
      * @return
      */
-    public static GetResponse get(GetRequest getRequest, RequestOptions requestOptions) {
+    public static GetResponse get(GetRequest getRequest, RequestOptions requestOptions) throws Exception {
         GetResponse documentFields = null;
-        try {
-            documentFields = restHighLevelClient.get(getRequest, requestOptions);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        documentFields = restHighLevelClient.get(getRequest, requestOptions);
         return documentFields;
     }
 
+
+    /**
+     * delete
+     *
+     * @param request
+     * @param requestOptions
+     * @return
+     * @throws Exception
+     */
+    public static DeleteResponse delete(DeleteRequest request, RequestOptions requestOptions) throws Exception {
+        DeleteResponse delete = restHighLevelClient.delete(request, requestOptions);
+        return delete;
+    }
 }
