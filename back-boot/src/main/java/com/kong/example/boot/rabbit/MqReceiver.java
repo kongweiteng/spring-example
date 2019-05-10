@@ -38,6 +38,6 @@ public class MqReceiver {
             value = @Queue("queue.out1")
     ))
     public void processComputer(String message) {
-        log.info("computer MqReceiver: {}", message);
+        //log.info("computer MqReceiver: {}", message);
     }
 }
