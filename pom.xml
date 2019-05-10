@@ -86,8 +86,8 @@
         <repository>
             <id>public</id>
             <name>enn nexus</name>
-            <!--            <url>http://10.4.82.184:30850/repository/maven-public/</url>-->
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <url>http://10.4.82.184:30850/repository/maven-public/</url>
+            <!--http://maven.aliyun.com/nexus/content/groups/public/-->
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -98,7 +98,7 @@
         <pluginRepository>
             <id>public</id>
             <name>enn nexus</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <url>http://10.4.82.184:30850/repository/maven-public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
