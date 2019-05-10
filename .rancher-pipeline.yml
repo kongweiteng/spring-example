@@ -1,20 +1,26 @@
 stages:
-- name: npm
-  steps:
-  - runScriptConfig:
-      image: node:latest
-      shellScript: |-
-        cd front-vue
-        npm install --registry https://registry.npm.taobao.org
-        npm run build:stage
-- name: maven-docker
-  steps:
-  - runScriptConfig:
-      image: kongweiteng/maven-docker
-      shellScript: |-
-        cd back-boot
-        mvn clean package docker:build -DpushImage --settings /settings.xml
-        ls
-        ls target
+  - name: npm
+    steps:
+      - runScriptConfig:
+          image: node:latest
+          shellScript: |-
+            cd front-vue
+            npm install
+            npm run build:stage
+  - name: maven
+    steps:
+      - runScriptConfig:
+          image: maven:3.6.0-jdk-8-alpine
+          shellScript: |-
+            mvn clean package -pl back-boot -am -Dmaven.test.skip=true
+            ls
+  - name: push
+    steps:
+      - publishImageConfig:
+          dockerfilePath: ./Dockerfile
+          buildContext: .
+          tag: reg.enncloud.cn/fnw-dev/back-boot
+          pushRemote: true
+          registry: reg.enncloud.cn
 timeout: 60
 notification: {}
