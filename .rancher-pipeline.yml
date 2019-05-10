@@ -7,20 +7,14 @@ stages:
         cd front-vue
         npm install --registry http://10.4.82.184:30850/repository/npm-group/
         npm run build:stage
-- name: maven
+- name: maven-docker
   steps:
   - runScriptConfig:
-      image: maven:3.6.0-jdk-8-alpine
+      image: twalter/maven-docker
       shellScript: |-
-        mvn clean package -pl back-boot -am -Dmaven.test.skip=true
+        cd back-boot
+        mvn clean package docker:build -DpushImage
         ls
-- name: push
-  steps:
-  - publishImageConfig:
-      dockerfilePath: ./Dockerfile
-      buildContext: .
-      tag: reg.enncloud.cn/fnw-dev/back-boot
-      pushRemote: true
-      registry: reg.enncloud.cn
+        ls target
 timeout: 60
 notification: {}
