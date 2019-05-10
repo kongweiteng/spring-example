@@ -7,10 +7,10 @@ stages:
 - name: maven-docker
   steps:
   - runScriptConfig:
-      image: twalter/maven-docker
+      image: kongweiteng/maven-docker
       shellScript: |-
         cd back-boot
-        mvn clean package docker:build -DpushImage
+        mvn clean package docker:build -DpushImage --settings /settings.xml
         ls
         ls target
 timeout: 60
