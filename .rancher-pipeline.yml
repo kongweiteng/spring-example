@@ -3,10 +3,7 @@ stages:
   steps:
   - runScriptConfig:
       image: node:latest
-      shellScript: |-
-        cd front-vue
-        npm install --registry http://10.4.82.184:30850/repository/npm-group/
-        npm run build:stage
+      shellScript: "cd front-vue\nnpm install \nnpm run build:stage"
 - name: maven-docker
   steps:
   - runScriptConfig:
