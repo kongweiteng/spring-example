@@ -12,6 +12,8 @@ import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.update.UpdateRequest;
+import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,15 @@ public class ElasticController {
         DeleteRequest request = new DeleteRequest(index, ElasticConfig.ELASTIC_TYPE, id);
         DeleteResponse delete = ElasticUtil.delete(request, RequestOptions.DEFAULT);
         return RespEntityUtil.ok(delete);
+    }
+
+    @PutMapping("/index")
+    @ApiOperation("修改")
+    public RespEntityUtil<UpdateResponse> update(@RequestBody IndexReqEntity indexReqEntity) throws Exception {
+        UpdateRequest request = new UpdateRequest(indexReqEntity.getIndex(), ElasticConfig.ELASTIC_TYPE, indexReqEntity.getId());
+        request.doc(indexReqEntity.getData());
+        UpdateResponse update = ElasticUtil.update(request, RequestOptions.DEFAULT);
+        return RespEntityUtil.ok(update);
     }
 
 }

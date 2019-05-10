@@ -9,6 +9,8 @@ import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.update.UpdateRequest;
+import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,5 +93,18 @@ public class ElasticUtil {
     public static DeleteResponse delete(DeleteRequest request, RequestOptions requestOptions) throws Exception {
         DeleteResponse delete = restHighLevelClient.delete(request, requestOptions);
         return delete;
+    }
+
+    /**
+     * update
+     *
+     * @param request
+     * @param requestOptions
+     * @return
+     * @throws Exception
+     */
+    public static UpdateResponse update(UpdateRequest request, RequestOptions requestOptions) throws Exception {
+        UpdateResponse updateResponse = restHighLevelClient.update(request, requestOptions);
+        return updateResponse;
     }
 }
