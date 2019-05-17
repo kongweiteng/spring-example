@@ -3,7 +3,6 @@ server:
 spring:
   application:
     name: back-boot
-  #配置mvc.static-path-pattern 实现对resource/static 下静态资源访问
   mvc:
     static-path-pattern: /**
   redis:
@@ -24,4 +23,4 @@ spring:
     password: guest
   elasticsearch:
     rest:
-      uris: 10.4.82.184:30080 # 端口是9200对应的映射端口
+      uris: 10.4.82.184:30080
