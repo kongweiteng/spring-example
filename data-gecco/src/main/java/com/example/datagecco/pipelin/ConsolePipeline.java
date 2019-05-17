@@ -1,4 +1,4 @@
-package com.example.datagecco;
+package com.example.datagecco.pipelin;
 
 import com.alibaba.fastjson.JSON;
 import com.geccocrawler.gecco.pipeline.Pipeline;

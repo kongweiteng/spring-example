@@ -1,4 +1,4 @@
-package com.example.datagecco;
+package com.example.datagecco.pipelin;
 
 import com.geccocrawler.gecco.pipeline.Pipeline;
 import com.geccocrawler.gecco.pipeline.PipelineFactory;
