@@ -1,23 +1,26 @@
 package com.example.datagecco.task;
 
 import com.geccocrawler.gecco.GeccoEngine;
-import com.geccocrawler.gecco.spring.SpringGeccoEngine;
+import com.geccocrawler.gecco.pipeline.PipelineFactory;
+import com.geccocrawler.gecco.request.HttpGetRequest;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 @Component
 public class DemoTask {
-    public SpringGeccoEngine test() {
-        return new SpringGeccoEngine() {
-            @Override
-            public void init() {
-                GeccoEngine.create()
-                        .pipelineFactory(springPipelineFactory)
-                        .classpath("com.example.datagecco")
-                        .start("https://github.com/xtuhcy/gecco")
-                        .interval(3000)
-                        .loop(true)
-                        .start();
-            }
-        };
+    @Resource
+    protected PipelineFactory springPipelineFactory;
+
+    public void test() {
+        HttpGetRequest start = new HttpGetRequest("https://github.com/xtuhcy/gecco");
+        start.setCharset("GBK");
+        GeccoEngine.create()
+                .pipelineFactory(springPipelineFactory)
+                .classpath("com.example.datagecco")
+                .start(start)
+                .interval(2000)
+                .loop(false)
+                .run();
     }
 }

@@ -4,14 +4,13 @@ import com.geccocrawler.gecco.GeccoEngine;
 import com.geccocrawler.gecco.spring.SpringGeccoEngine;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication
 @Configuration
 public class DataGeccoApplication {
 
-    @Bean
+//    @Bean
     public SpringGeccoEngine initGecco() {
         return new SpringGeccoEngine() {
             @Override
