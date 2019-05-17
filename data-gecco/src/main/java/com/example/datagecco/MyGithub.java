@@ -1,104 +1,94 @@
 package com.example.datagecco;
 
+import com.geccocrawler.gecco.GeccoEngine;
 import com.geccocrawler.gecco.annotation.*;
-import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.spider.HtmlBean;
 
-@Gecco(matchUrl="https://github.com/{user}/{project}", pipelines="consolePipeline")
+@Gecco(matchUrl = "https://github.com/{user}/{project}", pipelines = {"consolePipeline", "savePipeline"})
 public class MyGithub implements HtmlBean {
 
-	private static final long serialVersionUID = -7127412585200687225L;
+    private static final long serialVersionUID = -7127412585200687225L;
 
-	@Request
-	private HttpRequest request;
+    @RequestParameter("user")
+    private String user;
 
-	@RequestParameter("user")
-	private String user;
+    @RequestParameter("project")
+    private String project;
 
-	@RequestParameter("project")
-	private String project;
+    @Text
+    @HtmlField(cssPath = ".repository-meta-content")
+    private String title;
 
-	@Text
-	@HtmlField(cssPath=".repository-meta-content")
-	private String title;
+    @Text
+    @HtmlField(cssPath = ".pagehead-actions li:nth-child(2) .social-count")
+    private int star;
 
-	@Text
-	@HtmlField(cssPath=".pagehead-actions li:nth-child(2) .social-count")
-	private int star;
+    @Text
+    @HtmlField(cssPath = ".pagehead-actions li:nth-child(3) .social-count")
+    private int fork;
 
-	@Text
-	@HtmlField(cssPath=".pagehead-actions li:nth-child(3) .social-count")
-	private int fork;
+    @Html
+    @HtmlField(cssPath = ".entry-content")
+    private String readme;
 
-	@Href(click=false)
-	@HtmlField(cssPath="ul.numbers-summary > li:nth-child(4) > a")
-	private String contributors;
+    public String getReadme() {
+        return readme;
+    }
 
-	@HtmlField(cssPath=".entry-content")
-	private String readme;
+    public void setReadme(String readme) {
+        this.readme = readme;
+    }
 
-	public HttpRequest getRequest() {
-		return request;
-	}
+    public String getUser() {
+        return user;
+    }
 
-	public void setRequest(HttpRequest request) {
-		this.request = request;
-	}
+    public void setUser(String user) {
+        this.user = user;
+    }
 
-	public String getReadme() {
-		return readme;
-	}
+    public String getProject() {
+        return project;
+    }
 
-	public void setReadme(String readme) {
-		this.readme = readme;
-	}
+    public void setProject(String project) {
+        this.project = project;
+    }
 
-	public String getUser() {
-		return user;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setUser(String user) {
-		this.user = user;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getProject() {
-		return project;
-	}
+    public int getStar() {
+        return star;
+    }
 
-	public void setProject(String project) {
-		this.project = project;
-	}
+    public void setStar(int star) {
+        this.star = star;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public int getFork() {
+        return fork;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setFork(int fork) {
+        this.fork = fork;
+    }
 
-	public int getStar() {
-		return star;
-	}
-
-	public void setStar(int star) {
-		this.star = star;
-	}
-
-	public int getFork() {
-		return fork;
-	}
-
-	public void setFork(int fork) {
-		this.fork = fork;
-	}
-
-	public String getContributors() {
-		return contributors;
-	}
-
-	public void setContributors(String contributors) {
-		this.contributors = contributors;
-	}
-
+    public static void main(String[] args) {
+        GeccoEngine.create()
+                //Gecco搜索的包路径
+                .classpath("com.example.datagecco")
+                //开始抓取的页面地址
+                .start("https://github.com/xtuhcy/gecco")
+                //开启几个爬虫线程
+                .thread(1)
+                //单个爬虫每次抓取完一个请求后的间隔时间
+                .interval(2000)
+                .start();
+    }
 }
