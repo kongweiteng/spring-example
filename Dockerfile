@@ -3,7 +3,7 @@ FROM openjdk:8
 
 WORKDIR /opt
 
-
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # 将编译的jar拷贝的当前目录
 ADD back-boot/target/back-boot-0.0.1-SNAPSHOT.jar .
