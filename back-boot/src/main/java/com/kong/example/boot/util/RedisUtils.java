@@ -3,10 +3,10 @@ package com.kong.example.boot.util;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.Feature;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,8 +19,7 @@ public class RedisUtils {
 
     private static RedisTemplate redisTemplate;
 
-    //    @Resource(name = "redisTemplate")
-    @Autowired
+    @Resource(name = "redisTemplate")
     public void setRedisTemplate(RedisTemplate redisTemplate) {
         RedisUtils.redisTemplate = redisTemplate;
     }
@@ -36,16 +35,23 @@ public class RedisUtils {
     }
 
     public static <T> T getString(String key, Class<T> clazz) {
+        log.info("从redis获取数据开始,key：{}", key);
         Object o = redisTemplate.opsForValue().get(key);
+        log.info("从redis获取数据结束,key：{} ,value:{}", key, JSON.toJSONString(o));
         if (o != null) {
             return JSON.parseObject(o.toString(), clazz, new Feature[0]);
         }
         return null;
     }
 
-    public static Object getString(String key) {
+    public static String getString(String key) {
+        log.info("从redis获取数据开始,key：{}", key);
         Object o = redisTemplate.opsForValue().get(key);
-        return o;
+        log.info("从redis获取数据结束,key：{} ,value:{}", key, JSON.toJSONString(o));
+        if (o != null) {
+            return o.toString();
+        }
+        return null;
     }
 
     public static Boolean deleteString(String key) {
@@ -65,7 +71,9 @@ public class RedisUtils {
     }
 
     public static <T> T getHash(Object key, Object hashKey, Class<T> clazz) {
+        log.info("从redis获取数据开始,key：{},hashKey:{}", key, hashKey);
         Object o = redisTemplate.opsForHash().get(key, hashKey);
+        log.info("从redis获取数据结束,key：{},hashKey:{} ,value:{}", key, hashKey, JSON.toJSONString(o));
         if (o != null) {
             T t = null;
             try {
