@@ -1,6 +1,6 @@
 package com.kong.example.boot.util;
 
-import com.alibaba.fastjson.JSON;
+
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.delete.DeleteRequest;
@@ -23,7 +23,7 @@ public class ElasticUtil {
 
     @Autowired
     public void setRestHighLevelClient(RestHighLevelClient restHighLevelClient) {
-        this.restHighLevelClient = restHighLevelClient;
+        ElasticUtil.restHighLevelClient = restHighLevelClient;
     }
 
 
@@ -54,15 +54,15 @@ public class ElasticUtil {
             @Override
             public void onResponse(IndexResponse indexResponse) {
                 //当操作成功完成的时候被调用。响应对象以参数的形式传入
-                log.info("异步方法成功");
-                log.info(JSON.toJSONString(indexResponse));
+//                log.info("异步方法成功");
+//                log.info(JSON.toJSONString(indexResponse));
 
             }
 
             @Override
             public void onFailure(Exception e) {
                 //故障时被调用。异常对象以参数的形式传入
-                log.error("异步方法失败");
+                log.error("ElasticUtil indexAsync file : {}" + e.getMessage());
             }
         });
     }
@@ -107,4 +107,101 @@ public class ElasticUtil {
         UpdateResponse updateResponse = restHighLevelClient.update(request, requestOptions);
         return updateResponse;
     }
+
+    public static void updateAsync(UpdateRequest request, RequestOptions requestOptions) throws Exception {
+        restHighLevelClient.updateAsync(request, requestOptions, new ActionListener<UpdateResponse>() {
+            @Override
+            public void onResponse(UpdateResponse updateResponse) {
+                log.info("update ok");
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                log.error("ElasticUtil updateAsync file : {}" + e.getMessage());
+            }
+        });
+    }
+
+
+    /**
+     * search
+     *
+     * @param index
+     * @param requestOptions
+     * @throws Exception
+     */
+//    public static <T> IPage<T> search(String index, PageReq pageReq, RequestOptions requestOptions, Class<T> tClass) throws Exception {
+//        IPage page = new Page();
+//        long from = (pageReq.getCurrent() - 1) * pageReq.getSize();
+//        long size = pageReq.getSize();
+//
+//        SearchRequest searchRequest = new SearchRequest(index);
+//        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+//        //条件查询
+//        if (StringUtils.isNotBlank(pageReq.getConditonMap())) {
+//            HashMap<String, String> stringObjectMap = JSON.parseObject(pageReq.getConditonMap(), HashMap.class);
+//            stringObjectMap.entrySet().forEach(e -> {
+//                if (StringUtils.isNotBlank(e.getKey()) && StringUtils.isNotBlank(e.getValue())) {
+//                    searchSourceBuilder.query(QueryBuilders.matchPhraseQuery(e.getKey(), e.getValue()));
+//                }
+//            });
+//        }
+//
+//
+//        //模糊查询
+//        if (StringUtils.isNotBlank(pageReq.getLikeMap())) {
+//            HashMap<String, String> likeMap = JSON.parseObject(pageReq.getLikeMap(), HashMap.class);
+//            likeMap.entrySet().forEach(e -> {
+//                if (StringUtils.isNotBlank(e.getKey()) && e.getValue() != null) {
+//                    searchSourceBuilder.query(QueryBuilders.matchQuery(e.getKey(), e.getValue()).fuzziness(Fuzziness.AUTO));
+//                }
+//            });
+//        }
+//
+//        //时间范围查询
+//
+//        if (StringUtils.isNotBlank(pageReq.getStartTime())) {
+//            Long end = System.currentTimeMillis();
+//            if (StringUtils.isNotBlank(pageReq.getEndTime())) {
+//                end = DateUtil.parse(pageReq.getEndTime()).getTime();
+//            }
+//            searchSourceBuilder.query(QueryBuilders.rangeQuery("timeStamp").gte(DateUtil.parse(pageReq.getStartTime()).getTime()).lte(end));
+//        }
+//
+//
+//        //设置排序
+//        SortOrder desc = SortOrder.DESC;
+//        if (pageReq.getOrderDesc() != null && !pageReq.getOrderDesc()) {
+//            desc = SortOrder.ASC;
+//        }
+//        searchSourceBuilder.sort(new FieldSortBuilder(pageReq.getOrderBy()).order(desc));
+//
+//
+//        searchSourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));
+//
+//        //根据页数设置查询的条数
+//        searchSourceBuilder.from((int) from);
+//        searchSourceBuilder.size((int) size);
+//
+//        searchRequest.source(searchSourceBuilder);
+//
+//        SearchResponse search = restHighLevelClient.search(searchRequest, requestOptions);
+//        SearchHits hits = search.getHits();
+//
+//        long totalHits = hits.totalHits;
+//
+//        List<T> collect = Arrays.stream(hits.getHits()).map(e -> {
+//            String sourceAsString = e.getSourceAsString();
+//            T t1 = JSON.parseObject(sourceAsString, tClass);
+//            return t1;
+//        }).collect(Collectors.toList());
+//
+//        page.setRecords(collect);
+//        page.setCurrent(pageReq.getCurrent());
+//        page.setSize(pageReq.getSize());
+//        page.setTotal(totalHits);
+//        return page;
+//
+//
+//    }
 }
