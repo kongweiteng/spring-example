@@ -1,7 +1,7 @@
 spring:
   kafka:
     # 指定kafka 代理地址，可以多个
-    bootstrap-servers: 10.39.40.25:9092,10.39.40.29:9092,10.39.40.30:9092
+    bootstrap-servers: 168.39.40.25:9092,168.39.40.29:9092,168.39.40.30:9092
     consumer:
       auto-commit-interval: 100
       auto-offset-reset: earliest
