@@ -16,6 +16,7 @@
     <modules>
         <module>back-boot</module>
         <module>data-gecco</module>
+        <module>kafka-demo</module>
     </modules>
 
     <properties>
