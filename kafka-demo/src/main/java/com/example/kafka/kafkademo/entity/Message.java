@@ -8,7 +8,7 @@ import java.util.Date;
 public class Message {
     private Long id;    //id
 
-    private String msg; //消息
+    private Object msg; //消息
 
     private Date sendTime;  //时间戳
 }

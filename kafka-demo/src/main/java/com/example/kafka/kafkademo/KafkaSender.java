@@ -20,12 +20,15 @@ public class KafkaSender {
     private Gson gson = new GsonBuilder().create();
 
     //发送消息方法
-    public void send() {
+    public void send(String topic,Object value) {
         Message message = new Message();
         message.setId(System.currentTimeMillis());
-        message.setMsg(UUID.randomUUID().toString());
+        message.setMsg(value);
         message.setSendTime(new Date());
-        log.info("+++++++++++++++++++++  message = {}", gson.toJson(message));
-        kafkaTemplate.send("zhisheng", gson.toJson(message));
+        kafkaTemplate.send(topic, gson.toJson(message));
+    }
+
+    private static long currentMemSize() {
+        return MemoryUsageExtrator.currentFreeMemorySizeInBytes();
     }
 }

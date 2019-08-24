@@ -1,21 +1,21 @@
 spring:
   kafka:
-    # 指定kafka 代理地址，可以多个
-    bootstrap-servers: 168.39.40.25:9092,168.39.40.29:9092,168.39.40.30:9092
+    # ???kafka ??????????????
+    bootstrap-servers: 127.0.0.1:9092
     consumer:
       auto-commit-interval: 100
       auto-offset-reset: earliest
       enable-auto-commit: true
-      # 指定默认消费者group id
+      # ????????????group id
       group-id: test-consumer-group
-      # 指定消息key和消息体的编解码方式
+      # ??????key?????????????
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     producer:
-      # 每次批量发送消息的数量
+      # ????????????????????
       batch-size: 16384
       buffer-memory: 33554432
-      # 指定消息key和消息体的编解码方式
+      # ??????key?????????????
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       retries: 0
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
