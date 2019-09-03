@@ -18,7 +18,7 @@ public class KafkaDemoApplication {
         KafkaSender sender = context.getBean(KafkaSender.class);
 
         MetricEvent metric = new MetricEvent();
-        metric.setTimestamp(System.currentTimeMillis());
+
         metric.setName("mem");
         Map<String, String> tags = new HashMap<>();
         Map<String, Object> fields = new HashMap<>();
@@ -37,6 +37,7 @@ public class KafkaDemoApplication {
 
         while (true) {
             long timeMillis = System.currentTimeMillis();
+            metric.setTimestamp(timeMillis);
             //调用消息发送类中的消息发送方法
             sender.send("alert-metrics",metric);
 

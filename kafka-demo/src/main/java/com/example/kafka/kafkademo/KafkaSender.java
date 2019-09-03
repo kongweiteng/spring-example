@@ -22,6 +22,7 @@ public class KafkaSender {
 //        message.setMsg(value);
 //        message.setSendTime(new Date());
         kafkaTemplate.send(topic, gson.toJson(value));
+        log.info("send");
     }
 
     private static long currentMemSize() {
