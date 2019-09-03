@@ -10,7 +10,7 @@ import java.util.Optional;
 @Component
 @Slf4j
 public class KafkaReceiver {
-    @KafkaListener(topics = {"iot"})
+    @KafkaListener(topics = {"alert-metrics"})
     public void listen(ConsumerRecord<?, ?> record) {
 
         Optional<?> kafkaMessage = Optional.ofNullable(record.value());
